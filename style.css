@@ -1,0 +1,60 @@
+body {
+    font-family: "Jersey 10", sans-serif;
+    background-color: #C5D1EB;
+
+}
+
+.jersey-10-regular {
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    gap: 6px;
+
+}
+
+.results {
+    border-style: dotted;
+    border-color: #395B50;
+    border-radius: 10%;
+    border-width: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    background-color: #C5D1EB;
+}
+
+.game {
+    display: flex;
+    gap: 6px;
+}
+
+#gameheader,#resultsheader {
+    color: #1F2F16;
+}
+
+
+
+button {
+    font-family: "Jersey 10", sans-serif;
+    border-radius: 10px;
+    border: 2px solid #F9FAF8;
+    background: #5A7684;
+    color: #F9FAF8;
+    width: 120px;
+    font-weight: bold;
+}
+
+.game {
+    position:relative;
+}
+
