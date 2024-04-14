@@ -1,14 +1,15 @@
-// 1. container div = contains results screen and the playing buttons
-// 2. div playing
-// 3. div results 
+// implement the logic for a rock, paper, scissors game.
+// structure: 
+// container
+//      results: displays result of each round)
+//      game: contains three buttons for the player to choose
 
 //make container
 const container = document.createElement("div");
 container.setAttribute("class", "container");
 document.body.appendChild(container);
 
-// make results class (box)
-
+// make results class
 const results = document.createElement("div");
 results.setAttribute("class", "results");
 container.appendChild(results);
@@ -19,8 +20,8 @@ h1.appendChild(textNode);
 h1.setAttribute("id","gameheader");
 results.appendChild(h1);
 
-// make game class (to contain buttons)
 
+// make game class (to contain buttons)
 const game = document.createElement("div");
 game.setAttribute("class", "game");
 container.appendChild(game);
@@ -45,11 +46,61 @@ btnScissors.textContent = "Scissors";
 btnScissors.setAttribute("id", "scissors");
 game.appendChild(btnScissors);
 
+// create div for displaying live score
+const liveScore = document.createElement("div");
+liveScore.setAttribute("class","live");
+container.appendChild(liveScore);
+const h3 = document.createElement("h3");
+const liveText = document.createTextNode("Live Score");
+h3.appendChild(liveText);
+liveScore.appendChild(h3);
+
+
+// initialize thescores of player & computer
 let playerScore = 0;
 let compScore = 0;
 
 
 
+
+
+function scoreUpdate() {
+  
+    let playerScoreText = document.createTextNode(playerScore);
+    let compScoreText = document.createTextNode(compScore);
+    let p = document.createTextNode("You: ");
+    let c = document.createTextNode("Computer: ")
+
+    let playerLive = document.createElement("p");
+    playerLive.setAttribute("id","plive");
+    let compLive = document.createElement("p");
+    compLive.setAttribute("id","clive");
+
+    elementp = document.getElementById("plive");
+    if (elementp !== null) {
+        playerLive.append(p);
+        playerLive.append(playerScoreText);
+        elementp.replaceWith(playerLive)
+    } else {
+        playerLive.append(p);
+        playerLive.append(playerScoreText);
+        liveScore.appendChild(playerLive);
+    }
+
+    elementc = document.getElementById("clive");
+    if (elementc !== null) {
+        compLive.append(c);
+        compLive.append(compScoreText);
+        elementc.replaceWith(compLive)
+    } else {
+        compLive.append(c);
+        compLive.append(compScoreText);
+        liveScore.appendChild(compLive);
+    }
+
+}
+
+// start game (call playRound function) once a button is selected
 let btn = document.querySelector(".game");
 
     btn.addEventListener('click', (event) => {
@@ -58,6 +109,7 @@ let btn = document.querySelector(".game");
         const playerChoice = document.createElement("p");
         playerChoice.setAttribute("id", "player");
 
+        // check if element exists to dynamically update player's & computer's choice
         switch (target.id) {
             case 'rock':
                 const textNodeR = document.createTextNode("You played ROCK");          
@@ -82,7 +134,6 @@ let btn = document.querySelector(".game");
                     playerChoice.appendChild(textNodeP);
                     results.appendChild(playerChoice);
                 }
-
                 playRound('paper');    
                 break;
                 
@@ -101,17 +152,21 @@ let btn = document.querySelector(".game");
 
                 break;          
         }
+        scoreUpdate();
+    
+    
     } );
 
 
 
-// computer choice
+// function to get computer choice - random 
 function getComputerChoice() {
     let options = ["ROCK", "PAPER", "SCISSORS"];
     return options[Math.floor(Math.random() * options.length)];
     
 }
 
+// implements each round
 function playRound(playerSelection) {
     // get computer choice and display on the results board
     let computerSelection = getComputerChoice();
@@ -132,11 +187,12 @@ function playRound(playerSelection) {
         results.appendChild(compChoice);
     }
 
+    // call getResult function to determine player's result
     let playerResult = getResult(playerSelection,computerSelection);
+    // display result
     let displayResult = document.createElement("p");
     displayResult.setAttribute("id","display");
     pText = document.createTextNode(playerResult);
-
     elementD = document.getElementById("display");
 
     if (elementD !== null) {
@@ -147,7 +203,7 @@ function playRound(playerSelection) {
         results.appendChild(displayResult);
     }
 
-
+    // update score according to the result
     if (playerResult === "Tie!") {
         playerScore++;
         compScore++;
@@ -157,6 +213,7 @@ function playRound(playerSelection) {
         playerScore++;
     }
 
+    // once one of the players' score reaches 5, call endGame function to terminate the game
     if (playerScore === 5 || compScore === 5) {
         endGame();
     }
@@ -164,11 +221,7 @@ function playRound(playerSelection) {
 
 }
 
-// consider having a seperate function where it computes (tie, player win, player lose)
-// then update the score after getting the return values of that function 
-// then use DOM method to update results
-// how to not have the 'loop' go all the way through? how to have the button click be the stopper(?)
-
+// determines the player's fate; compare with computer's result (string) 
 function getResult(playerSelection,computerSelection) {
      // first convert user's input to all uppercase (for case-insensitivity)
      playerSelection = playerSelection.toUpperCase();
@@ -197,7 +250,7 @@ function getResult(playerSelection,computerSelection) {
      }
 }
 
-
+// function that displays the final scores and the result
 function endGame() {
     resultsHeading = document.createElement("h1");
     resultsHeadingText = document.createTextNode("Game over!");
@@ -223,13 +276,14 @@ function endGame() {
     results.appendChild(playerFinal);
     results.appendChild(compFinal);
 
+    // button to reset the game
     const playAgain = document.createElement("button");
     playAgain.textContent = "Play Again";
     playAgain.setAttribute("id", "again");
     results.appendChild(playAgain);
 
     const again = document.getElementById("again");
-
+    // if the button is clicked, the window is reloaded
     again.addEventListener('click', () => {
         window.location.reload();
         
