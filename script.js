@@ -23,6 +23,7 @@ function getComputerChoice() {
     
 }
 
+// handle user's button click and call appropriate functions
 function userClick(userSelection) {
     let computerSelection = getComputerChoice();
     getResult(userSelection,computerSelection);
@@ -34,7 +35,7 @@ function userClick(userSelection) {
 
     
 }
-//update players' scores
+// update players' scores
 function updateScore() {
     if (winner === 'tie') {
         scoreInfo.textContent = "It's a tie!";
@@ -49,6 +50,7 @@ function updateScore() {
 
 }
 
+// update the result of the round
 function updateRoundResult(winner, userSelection, compSelection) {
     if (winner === 'user') {
         scoreMsg.textContent = `${userSelection} beats ${compSelection}`;
@@ -59,6 +61,7 @@ function updateRoundResult(winner, userSelection, compSelection) {
     }
 }
 
+// increment score accordingly and update the round's winner
 function getResult(userSelection, compSelection) {
     if (userSelection === compSelection) {
         winner = 'tie';
@@ -94,6 +97,7 @@ function getResult(userSelection, compSelection) {
 
 }
 
+// end game and output final results, ask user to play again 
 function endGame() {
     scoreInfo.style.color = '#607196';
     scoreMsg.style.color = '#FF7B9C';
