@@ -10,6 +10,55 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script src="game.js"></script>
+  <header class="header">
+    <h1 class="title">ROCK PAPER SCISSORS</h1>
+  </header>
+  <div class="container">
+    <div class="game-panel">
+      <div class="info-section" id="user-section">
+        <div class="icon" id="user-icon">
+          <img class="user-image" src="./images/user.png">
+        </div>
+        <div class="name" id="user-name">YOU</div>
+        <div class="score" id="user-score">0</div>
+      </div>
+      <div class="game-ui">
+        <div class="results-board" id="results-board">
+          <h2 class="score-info" id="score-info">Play against the computer!
+          <h3 class="score-msg" id="score-msg">First to get 5 points wins</h3>
+
+          </div>
+          
+
+        <div class="buttons"> 
+          <button class="rock" id="rock-btn">
+            <img class="rock-icon" src="./images/rock.png">
+          </button>
+          <button class="paper" id="paper-btn">
+            <img class="paper-icon", src="./images/paper.png">
+          </button>
+          <button class="scissors" id="scissors-btn">
+            <img class="scissors-icon", src="./images/scissors.png">
+          </button>
+        </div>
+        </div>
+
+        <div class="info-section" id="comp-section">
+          <div class="icon">
+            <img class="comp-image" src="./images/computer.png">
+          </div>
+          <div class="name" id="comp-name">COMPUTER</div>
+          <div class="score" id="comp-score">0</div>
+        </div>
+       
+          
+      </div>
+      
+    </div>
+    <div class="footer">github <a href= "https://github.com/lizzyjoo"> @lizzyjoo</a></div>
+
+
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
