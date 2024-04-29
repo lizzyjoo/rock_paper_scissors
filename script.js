@@ -103,13 +103,13 @@ function endGame() {
     scoreMsg.style.color = '#FF7B9C';
 
     if (userScore === compScore) {
-        scoreInfo.textContent = 'Game Over: You tied with the computer!';
+        scoreInfo.textContent = '👾Game Over: You tied with the computer!';
 
     } else if (userScore < compScore) {
-        scoreInfo.textContent = 'Game Over: You lost!';
+        scoreInfo.textContent = '👾Game Over: You lost!';
 
     } else {
-        scoreInfo.textContent = 'Game Over: You won!';
+        scoreInfo.textContent = '👾Game Over: You won!';
 
     }
     
