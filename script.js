@@ -38,7 +38,7 @@ function userClick(userSelection) {
 // update players' scores
 function updateScore() {
     if (winner === 'tie') {
-        scoreInfo.textContent = "It's a tie!";
+        scoreInfo.textContent = "It's a tie 🤨";
     } else if (winner === 'user') {
         scoreInfo.textContent = "You won 🤗";
     } else if (winner === 'computer') {
